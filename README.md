@@ -1,4 +1,4 @@
-# Space Instagram
+# Instagram Sweepstakes
 
 Returns list of users qualified to enter your [Instagram](https://instagram.com) sweepstakes according to a set of predefined rules.
 
