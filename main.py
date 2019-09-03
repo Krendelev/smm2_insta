@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 
 def get_mentions(comment):
+    # https://gist.github.com/technion/5ca01ca420725e17cd3f#gistcomment-2658841
     pattern = re.compile(
         r"@([A-Za-z0-9_.](?:(?:[A-Za-z0-9_.]|(?:\\.(?!\\.))){0,28}(?:[A-Za-z0-9_.]))?)"
     )
@@ -14,7 +15,7 @@ def get_mentions(comment):
 
 def is_user_exists(bot, user):
     user_id = bot.get_user_id_from_username(user)
-    return True if user_id else False
+    return bool(user_id)
 
 
 def get_link():
@@ -22,7 +23,7 @@ def get_link():
         description="Returns users qualified to enter sweepstakes"
     )
     parser.add_argument("URL", help="URL for your Instagram post")
-    return parser.parse_args()
+    return parser.parse_args().URL
 
 
 if __name__ == "__main__":
@@ -32,7 +33,7 @@ if __name__ == "__main__":
     bot.login(username=os.environ["INSTA_LOGIN"], password=os.environ["INSTA_PASS"])
 
     media_link = get_link()
-    media_id = bot.get_media_id_from_link(media_link.URL)
+    media_id = bot.get_media_id_from_link(media_link)
     likers = bot.get_media_likers(media_id)
     author = bot.get_media_info(media_id)[0]["user"]["username"]
     followers = bot.get_user_followers(author)
@@ -51,4 +52,4 @@ if __name__ == "__main__":
         if mention_verified and user_id in likers and user_id in followers:
             qualified_users.append(username)
 
-    print(qualified_users)
+    print(*qualified_users, sep=", ")

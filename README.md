@@ -24,7 +24,7 @@ Run `main.py` with link to your post as an argument.
 
 ```bash
 $ python main.py https://www.instagram.com/p/B15-qRooKYe/
-['99marvik99', '_sadseal__', 'peryzt', 'yarik24_mr', 'tiiny.yy', 'iiamgerman_', '06.05m']
+99marvik99, _sadseal__, peryzt, yarik24_mr, tiiny.yy, iiamgerman_, 06.05m
 ```
 
 ### Project Goals
